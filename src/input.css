@@ -25,4 +25,7 @@ body {
 .hamburger-aktif > span:nth-child(3){
     @apply -rotate-45;
 }
+.hover-zoom:hover {
+    transform: scale(1.05);
+}
 
