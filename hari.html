@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyai</title>
+    <link href="src/output.css" rel="stylesheet">
+</head>
+<body class="px-4 md:px-28">
+    <!-- navbar -->
+
+    <header class="bg-transparent px-4 md:px-28 absolute  top-0 left-0 w-full flex items-center z-10">
+        <div class="container">
+            <div class="flex items-center justify-between relative">
+                <div class="px-4">
+                    <a href="index.html" class="font-bold text-lg block py-6">Ustadz <span class="text-primary">Ali</span></a>
+                </div>
+                <div class="flex items-center px-4">
+                    <button id="hamburger" name="hamburger" type="button" class="block absolute right-4 lg:hidden ">
+                        <span class="hamburger-line transition duration-300 ease-in-out origin-top-left"></span>
+                        <span class="hamburger-line  transition duration-300 ease-in-out"></span>
+                        <span class="hamburger-line  transition duration-300 ease-in-out origin-bottom-left "></span>
+                    </button>
+                    <nav id="nav-menu" class="hidden absolute py-5 bg-white shadow-lg rounded-lg max-w-[250px] w-full right-4 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none">
+                        <ul class="block lg:flex">
+                            <li class="group">
+                                <a href="index.html#tentang" class="text-base text-dark py-2 mx-4 flex  group-hover:text-primary">Tentang</a>
+                            </li>
+                            <li class="group">
+                                <a href="video.html" class="text-base text-dark py-2 mx-4 flex  group-hover:text-primary">Video Dakwah</a>
+                            </li>
+                            <li class="group">
+                                <a href="artikel.html" class="text-base text-dark py-2 mx-4 flex group-hover:text-primary">Artikel</a>
+                            </li>
+                            <li class="group">
+                                <a href="hari.html" class="text-base text-dark py-2 mx-4 flex group-hover:text-primary">Hari Besar Islam</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- hero section -->
+    <section id="hari" class="pt-20">
+        <div class="container mx-auto">
+            <div class="flex flex-wrap">
+                <div class="w-full px-4">
+                    <h1 class="text-2xl font-bold mb-6">Kalender Hari Besar Islam 2024-2025</h1>
+                    <div class="overflow-x-auto rounded-2xl shadow-lg">
+                        <table id="calendar-table" class="min-w-full bg-white rounded-2xl">
+                            <thead>
+                                <tr class="bg-primary text-white">
+                                    <th class="px-4 py-2">Tanggal Hijriah</th>
+                                    <th class="px-4 py-2">Tanggal Nasional</th>
+                                    <th class="px-4 py-2">Tanggal Jawa</th>
+                                    <th class="px-4 py-2">Keterangan</th>
+                                </tr>
+                            </thead>
+                            <tbody id="calendar-body">
+                                <!-- table rows will be generated dynamically using JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="footer mt-4">
+                        <p class="text-sm">Catatan: Tanggal dalam kalender Islam bersifat lunar dan dapat bervariasi tergantung pada pengamatan bulan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <script>
+            // define Islamic holidays for 2024 and 2025
+            const islamicHolidays = [
+                { date: '1 Muharram 1445', name: 'Tahun Baru Islam', nationalDate: '16 Januari 2024', jawaDate: '1 Sura 1958' },
+                { date: '10 Muharram 1445', name: 'Asyura', nationalDate: '25 Januari 2024', jawaDate: '10 Sura 1958' },
+                { date: '12 Rabiul Awal 1445', name: 'Maulid Nabi Muhammad SAW', nationalDate: '7 Februari 2024', jawaDate: '12 Mulud 1958' },
+                { date: '27 Rajab 1445', name: 'Isra Mi\'raj', nationalDate: '22 Maret 2024', jawaDate: '27 Rejeb 1958' },
+                { date: '1 Ramadan 1445', name: 'Awal Ramadan', nationalDate: '10 April 2024', jawaDate: '1 Pasa 1958' },
+                { date: '15 Ramadan 1445', name: 'Nisfu Ramadan', nationalDate: '25 April 2024', jawaDate: '15 Pasa 1958' },
+                { date: '1 Syawal 1445', name: 'Hari Raya Idul Fitri', nationalDate: '24 Mei 2024', jawaDate: '1 Syawal 1958' },
+                { date: '9 Dzulhijjah 1445', name: 'Wukuf Arafah', nationalDate: '19 Juli 2024', jawaDate: '9 Dulqaidah 1958' },
+                { date: '10 Dzulhijjah 1445', name: 'Hari Raya Idul Adha', nationalDate: '20 Juli 2024', jawaDate: '10 Dulqaidah 1958' },
+                { date: '1 Muharram 1446', name: 'Tahun Baru Islam', nationalDate: '5 Januari 2025', jawaDate: '1 Sura 1959' },
+                { date: '10 Muharram 1446', name: 'Asyura', nationalDate: '14 Januari 2025', jawaDate: '10 Sura 1959' },
+                { date: '12 Rabiul Awal 1446', name: 'Maulid Nabi Muhammad SAW', nationalDate: '26 Januari 2025', jawaDate: '12 Mulud 1959' },
+                { date: '27 Rajab 1446', name: 'Isra Mi\'raj', nationalDate: '10 Maret 2025', jawaDate: '27 Rejeb 1959' },
+                { date: '1 Ramadan 1446', name: 'Awal Ramadan', nationalDate: '20 Maret 2025', jawaDate: '1 Pasa 1959' },
+                { date: '15 Ramadan 1446', name: 'Nisfu Ramadan', nationalDate: '4 April 2025', jawaDate: '15 Pasa 1959' },
+                { date: '1 Syawal 1446', name: 'Hari Raya Idul Fitri', nationalDate: '19 April 2025', jawaDate: '1 Syawal 1959' },
+                { date: '9 Dzulhijjah 1446', name: 'Wukuf Arafah', nationalDate: '3 Juni 2025', jawaDate: '9 Dulqaidah 1959' },
+                { date: '10 Dzulhijjah 1446', name: 'Hari Raya Idul Adha', nationalDate: '4 Juni 2025', jawaDate: '10 Dulqaidah 1959' },
+                { date: '15 Dzulhijjah 1446', name: 'Hari Tasyrik', nationalDate: '9 Juni 2025', jawaDate: '15 Dulqaidah 1959' },
+                { date: '15 Dzulhijjah 1446', name: 'Hari Tasyrik', nationalDate: '10 Juni 2025', jawaDate: '15 Dulqaidah 1959' },
+                { date: '15 Dzulhijjah 1446', name: 'Hari Tasyrik', nationalDate: '11 Juni 2025', jawaDate: '15 Dulqaidah 1959' },
+                { date: '1 Muharram 1447', name: 'Tahun Baru Islam', nationalDate: '25 Desember 2025', jawaDate: '1 Sura 1960' }
+            ];
+    
+            // generate table rows dynamically
+            islamicHolidays.forEach(holiday => {
+                const row = `
+                    <tr class="holiday">
+                        <td class="px-4 py-2 border-b">${holiday.date}</td>
+                        <td class="px-4 py-2 border-b">${holiday.nationalDate}</td>
+                        <td class="px-4 py-2 border-b">${holiday.jawaDate}</td>
+                        <td class="px-4 py-2 border-b">${holiday.name}</td>
+                    </tr>
+                `;
+                document.getElementById('calendar-body').innerHTML += row;
+            });
+        </script>
+    </section>
+      <!-- sikil -->
+       <footer class="py-6 mt-20">
+        <p class="text-center items-center text-primary text-sm ">&copy; 2024 Ustadz Ali</p>
+       </footer>
+
+      <script src="dist/js/script.js"></script>
+</body>
+</html>
